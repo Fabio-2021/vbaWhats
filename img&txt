@@ -1,0 +1,55 @@
+Sub ENVIARimgetxt()
+Sheets("planilha1").Select
+
+Dim Contato As String
+Dim url As String
+Dim msg As String
+Dim msgu As String
+Dim img As String
+
+url = "https://web.whatsapp.com"
+ActiveWorkbook.FollowHyperlink url
+
+Application.Wait (Now + TimeValue("00:00:30"))
+
+msgu = Range("d6").Value
+For i = 2 To 100
+   Contato = Range("a" & i).Value
+    
+
+
+          Call SendKeys("{TAB}")
+          Application.Wait (Now + TimeValue("00:00:05"))
+          Call SendKeys(Contato, True)
+          Application.Wait (Now + TimeValue("00:00:05"))
+          Call SendKeys("{ENTER}")
+          Application.Wait (Now + TimeValue("00:00:02"))
+          img = Range("d4").Value
+          Application.Wait (Now + TimeValue("00:00:05"))
+          ActiveSheet.Shapes.Range(Array(img)).Select
+          Selection.Copy
+          Call SendKeys("^v", True)
+          Application.Wait (Now + TimeValue("00:00:03"))
+          Call SendKeys("{ENTER}", True)
+          Application.Wait (Now + TimeValue("00:00:05"))
+          Call SendKeys(msgu, True)
+           Application.Wait (Now + TimeValue("00:00:03"))
+          Call SendKeys("{ENTER}", True)
+          Application.Wait (Now + TimeValue("00:00:02"))
+          Call SendKeys("{TAB}")
+          Application.Wait (Now + TimeValue("00:00:03"))
+          Call SendKeys("{TAB}")
+          Application.Wait (Now + TimeValue("00:00:03"))
+          Call SendKeys("{TAB}")
+          Application.Wait (Now + TimeValue("00:00:02"))
+          
+
+
+Next i
+
+Call SendKeys("^w", True)
+Application.Wait (Now + TimeValue("00:00:05"))
+
+End Sub
+
+
